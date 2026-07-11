@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.env
+.env.*
+local.settings.json
+.DS_Store
+.claude/worktrees/
+test-results/
+coverage/
+azurite-data/
+deploy.zip
