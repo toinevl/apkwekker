@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /bevestigd.html
+Disallow: /afgemeld.html
+Disallow: /ongeldig.html
+
+Sitemap: https://apkwekker.nl/sitemap.xml

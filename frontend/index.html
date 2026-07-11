@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>APKwekker — Gratis APK-herinnering per e-mail</title>
+  <meta name="description" content="Nooit meer je APK vergeten. Check je kenteken en ontvang gratis een herinnering vóórdat je APK verloopt. Direct inzicht in APK-datum, bouwjaar en trekgewicht." />
+  <meta property="og:title" content="APKwekker — Nooit meer je APK vergeten" />
+  <meta property="og:description" content="Gratis APK-herinnering per e-mail. Check je kenteken en zie direct je APK-vervaldatum." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://apkwekker.nl/" />
+  <meta property="og:locale" content="nl_NL" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="site-header">
+    <span class="logo">APK<span class="accent">wekker</span></span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Nooit meer je APK vergeten</h1>
+      <p class="sub">Check je kenteken en ontvang gratis een e-mail vóórdat je APK verloopt. Geen boetes, geen stress — gewoon op tijd naar de garage.</p>
+    </section>
+
+    <form id="kenteken-form" class="plate-form" autocomplete="off">
+      <label for="kenteken-input" class="visually-hidden" style="position:absolute;left:-9999px">Kenteken</label>
+      <div class="plate">
+        <span class="eu-band" aria-hidden="true"><span class="stars">★ ★ ★</span>NL</span>
+        <input id="kenteken-input" name="kenteken" type="text" placeholder="XX-99-XX" maxlength="8" required
+               inputmode="text" autocapitalize="characters" spellcheck="false" />
+      </div>
+      <button type="submit" class="primary">Check kenteken</button>
+    </form>
+
+    <section id="result" aria-live="polite"></section>
+
+    <section id="subscribe-section" hidden>
+      <h2>Zet de wekker</h2>
+      <p>Ontvang gratis een herinnering 60, 30 en 7 dagen voordat je APK verloopt. Afmelden kan altijd met één klik.</p>
+      <form id="subscribe-form">
+        <label for="email-input" style="position:absolute;left:-9999px">E-mailadres</label>
+        <input id="email-input" type="email" placeholder="jouw@email.nl" required />
+        <button type="submit" class="primary">Herinner mij</button>
+      </form>
+      <div id="subscribe-message" aria-live="polite"></div>
+    </section>
+
+    <section class="faq">
+      <h2>Veelgestelde vragen</h2>
+      <details>
+        <summary>Wat is APKwekker?</summary>
+        <p>Een gratis service die je op tijd een e-mail stuurt voordat de APK van je auto verloopt. Je krijgt een herinnering op 60, 30 en 7 dagen voor de vervaldatum.</p>
+      </details>
+      <details>
+        <summary>Is het echt gratis?</summary>
+        <p>Ja. APKwekker is en blijft gratis. De site wordt betaald met vergoedingen voor sommige links (bijvoorbeeld naar verzekeringsvergelijkers) — daar merk jij niets van.</p>
+      </details>
+      <details>
+        <summary>Hoe zit het met mijn privacy?</summary>
+        <p>We bewaren alleen je e-mailadres, je kenteken en het moment van aanmelden. Niets wordt verkocht of gedeeld. Je bevestigt je aanmelding eerst per e-mail (dubbele opt-in) en elke mail bevat een afmeldlink. Lees meer in onze <a href="/privacy.html">privacyverklaring</a>.</p>
+      </details>
+      <details>
+        <summary>Waar komen de voertuiggegevens vandaan?</summary>
+        <p>Uit de openbare voertuigdata van de RDW (opendata.rdw.nl). Die data is voor iedereen vrij toegankelijk.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      <a href="/privacy.html">Privacy</a> · Voertuigdata: <a href="https://opendata.rdw.nl" rel="noopener">RDW Open Data</a>
+    </p>
+    <p>Sommige links op deze site zijn affiliatelinks; wij ontvangen daar mogelijk een vergoeding voor.</p>
+    <p>© 2026 APKwekker</p>
+  </footer>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

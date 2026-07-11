@@ -10,22 +10,22 @@ x 2026-07-11 (A) Validate RDW open data API (APK date, towing fields, no key nee
 x 2026-07-11 (A) Write business plan docs/business-plan.md +docs #003
 
 ## Phase 1 — Scaffold
-(A) Project structure (frontend/, api/, infra/, docs/) + first commit +scaffold #010
-(A) Create GitHub repo toinevl/apkwekker (name verified unique, 0 search hits) +scaffold #011
-(B) CI workflows with workflow_dispatch (lesson: azure-deployment-lessons) +ci #012
+x 2026-07-11 (A) Project structure (frontend/, api/, infra/, docs/) + first commit +scaffold #010
+x 2026-07-11 (A) Create GitHub repo toinevl/apkwekker (name verified unique, 0 search hits) +scaffold #011
+x 2026-07-11 (B) CI workflows with workflow_dispatch (lesson: azure-deployment-lessons) +ci #012
 
 ## Phase 2 — Build (TDD, subagents)
-(A) API: GET /api/vehicle/{kenteken} — RDW lookup + vehicle passport + towing check +api #020
-(A) API: POST /api/subscribe — kenteken+email, double opt-in token, Table Storage +api #021
-(A) API: GET /api/confirm?token= — confirm subscription (double opt-in, GDPR) +api #022
-(A) API: GET /api/unsubscribe?token= — one-click unsubscribe +api #023
-(A) Timer function: daily scan, send reminder emails at T-60/T-30/T-7 days +api #024
-(A) Email sending via Azure Communication Services +api #025
-(A) Frontend: landing page — kenteken input, vehicle passport, subscribe form (NL) +frontend #026
-(B) Frontend: privacy policy + affiliate disclosure pages (NL, GDPR) +frontend #027
-(B) Rate limiting on subscribe + RDW lookup endpoints +security #028
-(B) Input validation: kenteken normalization, zod strict schemas, Dutch error messages +security #029
-(B) Tests green: API unit tests + frontend tests (TDD) +quality #030
+x 2026-07-11 (A) API: GET /api/vehicle/{kenteken} — RDW lookup + vehicle passport + towing check +api #020
+x 2026-07-11 (A) API: POST /api/subscribe — kenteken+email, double opt-in token, Table Storage +api #021
+x 2026-07-11 (A) API: GET /api/confirm?token= — confirm subscription (double opt-in, GDPR) +api #022
+x 2026-07-11 (A) API: GET /api/unsubscribe?token= — one-click unsubscribe +api #023
+x 2026-07-11 (A) Timer function: daily scan, send reminder emails at T-60/T-30/T-7 days +api #024
+x 2026-07-11 (A) Email sending via Azure Communication Services (dev-mode fallback logs) +api #025
+x 2026-07-11 (A) Frontend: landing page — kenteken input, vehicle passport, subscribe form (NL) +frontend #026
+x 2026-07-11 (B) Frontend: privacy policy + affiliate disclosure pages (NL, GDPR) +frontend #027
+x 2026-07-11 (B) Rate limiting on subscribe (5/IP/uur, in-memory) +security #028
+x 2026-07-11 (B) Input validation: kenteken normalization, zod strict schemas, Dutch error messages +security #029
+x 2026-07-11 (B) Tests green: API 29/29, frontend 11/11, builds clean (verified 2026-07-11) +quality #030
 
 ## Phase 3 — Deploy (new RG, no shared resources)
 (A) Provision rg-apkwekker (SWA Free + Flex Consumption + Storage + ACS Email) via Bicep +infra #040
