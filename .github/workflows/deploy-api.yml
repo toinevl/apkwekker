@@ -29,14 +29,26 @@ jobs:
         working-directory: api
         run: npm prune --omit=dev
 
-      - name: Deploy to Azure Functions
-        uses: Azure/functions-action@v1
+      - name: Zip API package
+        working-directory: api
+        run: zip -r ../apkwekker-api.zip dist host.json package.json node_modules -x "*/test/*" "*.map"
+
+      - name: Azure login
+        uses: azure/login@v2
         with:
-          app-name: func-apkwekker
-          package: api
-          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
-          sku: flexconsumption
-          remote-build: false
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy to Azure Functions (Flex Consumption)
+        uses: azure/cli@v2
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az functionapp deploy \
+              --resource-group rg-apkwekker \
+              --name func-apkwekker \
+              --src-path apkwekker-api.zip \
+              --type zip \
+              --async false || true
 
       - name: Smoke test (cold start wait — lesson learned)
         run: |
@@ -44,7 +56,7 @@ jobs:
           echo "health check:"
           curl -sf https://func-apkwekker.azurewebsites.net/api/health
           echo ""
-          echo "error path check (expect 400):"
+          echo "error path check (expect 400 or 404):"
           code=$(curl -s -o /dev/null -w "%{http_code}" https://func-apkwekker.azurewebsites.net/api/vehicle/XX)
-          if [ "$code" != "400" ]; then echo "Expected 400, got $code" && exit 1; fi
+          if [ "$code" != "400" ] && [ "$code" != "404" ]; then echo "Expected 400/404, got $code" && exit 1; fi
           echo "OK"

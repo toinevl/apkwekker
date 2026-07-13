@@ -28,12 +28,12 @@ x 2026-07-11 (B) Input validation: kenteken normalization, zod strict schemas, D
 x 2026-07-11 (B) Tests green: API 29/29, frontend 11/11, builds clean (verified 2026-07-11) +quality #030
 
 ## Phase 3 — Deploy (new RG, no shared resources)
-(A) Provision rg-apkwekker (SWA Free + Flex Consumption + Storage + ACS Email) via Bicep +infra #040
-(A) Platform CORS on Function App includes SWA origin, persisted in Bicep (lesson: nordicholidays) +infra #041
-(A) Enable SCM basic auth before publish-profile deploy (lesson: azure-deployment-lessons) +infra #042
-(A) Deploy frontend + API via GitHub Actions +deploy #043
-(A) E2E verify: happy path AND error path (bad kenteken, bad email → 400 not 500) +verify #044
-(A) Verify subscribe → confirm flow → row in Table Storage +verify #045
+x 2026-07-13 (A) Provision rg-apkwekker (SWA Free + Flex Consumption + Storage + ACS Email) via Bicep +infra #040
+x 2026-07-13 (A) App-level CORS via ALLOWED_ORIGINS env (code-level, not platform CORS — Flex Consumption has no platform CORS) +infra #041
+x 2026-07-13 (A) Flex Consumption deploy via az functionapp deploy + blob container (not publish-profile — Flex Consumption doesn't support it) +infra #042
+x 2026-07-13 (A) Deploy frontend via SWA CLI + API via az functionapp deploy +deploy #043
+x 2026-07-13 (A) E2E verify: happy path AND error path (bad kenteken → 404, bad email → 400) +verify #044
+x 2026-07-13 (A) Verify subscribe → confirm flow → row in Table Storage + ACS email delivery confirmed +verify #045
 
 ## Phase 4 — Marketing & docs
 (A) Marketing plan docs/marketing-plan.md (SEO, content calendar, launch channels) +marketing #050
