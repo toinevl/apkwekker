@@ -38,7 +38,7 @@ x 2026-07-13 (A) Verify subscribe → confirm flow → row in Table Storage + AC
 ## Phase 4 — Marketing & docs
 x 2026-07-13 (A) Marketing plan docs/marketing-plan.md (SEO, content calendar, launch channels) +marketing #050
 x 2026-07-13 (A) SEO basics: meta tags, sitemap.xml, robots.txt, OG image, Twitter Cards, JSON-LD structured data +marketing #051
-(A) GitHub wiki: Home, Architecture, Deployment, Business Plan, Marketing, Artifact Log +docs #052
+x 2026-07-13 (A) GitHub wiki: Home, Architecture, Deployment, Business Plan, Marketing, Artifact Log +docs #052
 
 ## Backlog (post-launch, future reference)
 (B) Affiliate integration: insurance comparison deep links in vehicle passport +revenue #060
