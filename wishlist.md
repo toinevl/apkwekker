@@ -33,7 +33,7 @@ x 2026-07-13 (A) App-level CORS via ALLOWED_ORIGINS env (code-level, not platfor
 x 2026-07-13 (A) Flex Consumption deploy via az functionapp deploy + blob container (not publish-profile — Flex Consumption doesn't support it) +infra #042
 x 2026-07-13 (A) Deploy frontend via SWA CLI + API via az functionapp deploy +deploy #043
 x 2026-07-13 (A) Add Playwright production E2E coverage file for all user flows +verify #044
- 2026-07-13 (A) Run Playwright E2E green in a browser-capable environment +verify #044
+x 2026-07-13 (A) Run Playwright E2E green in CI against production +verify #044
 x 2026-07-13 (A) Git push current deploy/verify work + README update +deploy #047
 
 ## Phase 4 — Marketing & docs
@@ -50,3 +50,4 @@ x 2026-07-13 (A) GitHub wiki: Home, Architecture, Deployment, Business Plan, Mar
 (C) Reminder channel: optional WhatsApp/SMS via ACS +feature #065
 (C) Programmatic SEO: per-model landing pages ("APK check Volkswagen Golf") +marketing #066
 (D) Analytics: privacy-friendly (Plausible-style) counters +ops #067
+(D) Customer support email/sender identity aligned with custom domain +ops #068

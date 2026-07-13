@@ -15,6 +15,7 @@
 ```
 frontend/   Vite + TS static frontend (NL)
 api/        Azure Functions v4 API + daily reminder timer
+e2e/        Isolated Playwright E2E suite against production
 infra/      Bicep templates
 docs/       business plan, marketing plan, architecture
 wishlist.md build tracker + backlog (todo.txt-style)
@@ -34,40 +35,33 @@ wishlist.md build tracker + backlog (todo.txt-style)
 ## Development
 
 ```bash
-cd api && npm install env -u NODE_ENV && npm test      # API unit tests (29)
-cd frontend && npm install && npm test                   # Frontend unit tests + playwright config
+cd api && env -u NODE_ENV npm ci && npm test      # API unit tests (29)
+cd frontend && npm ci && npm test                   # Frontend unit tests (11)
+cd e2e && npm ci && API_BASE_URL=https://func-apkwekker.azurewebsites.net npx playwright test
 ```
 
 ## Deployment
 
-GitHub Actions: `deploy-frontend.yml` (SWA) and `deploy-api.yml` (Functions Flex Consumption via Azure login + `az functionapp deploy`). Both support `workflow_dispatch`.
+GitHub Actions:
+- `deploy-frontend.yml` — SWA
+- `deploy-api.yml` — Functions Flex Consumption via Azure login + `az functionapp deploy`
+- `e2e.yml` — Playwright E2E against production on push to `main`
+
+All workflows support `workflow_dispatch`.
 
 **Required GitHub secrets:**
 - `AZURE_STATIC_WEB_APPS_API_TOKEN` — SWA deployment token
 - `AZURE_CREDENTIALS` — Azure service principal JSON (Contributor on rg-apkwekker)
 
 **Required GitHub vars:**
-- `API_BASE_URL` — Function App base URL for frontend build
+- `API_BASE_URL` — Function App base URL for frontend build and E2E
 
 ## Production verification
 
-Current frontend tests: `11 passed`.
-Frontend build: verified with `npm run build`.
-
-Production E2E status: **Playwright coverage added, but not yet run in a browser-capable environment.**
-Include in CI: add a Playwright job with `ubuntu-latest`
-and install/run tests via `npx playwright install --with-deps chromium && npm run test:e2e`.
-
-The added production E2E spec covers:
-- homepage load
-- valid kenteken happy path with vehicle passport
-- invalid kenteken client validation
-- 404 for unknown kenteken
-- subscribe error handling
-- invalid confirm token redirect
-- invalid unsubscribe token redirect
-- static pages: privacy, bevestigd, afgemeld
-- API health endpoint
+- API tests: `29 passed (29)`
+- Frontend unit tests: `11 passed`
+- Frontend build: passing
+- E2E: Playwright workflow present; latest live-run fixes verified ad-hoc; awaiting CI confirmation of green run from workflow `29282621701`
 
 ## Azure resources (rg-apkwekker)
 
