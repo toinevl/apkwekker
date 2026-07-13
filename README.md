@@ -7,7 +7,7 @@
 ## Architecture
 
 - **Frontend:** static site (Vite + TypeScript), hosted on Azure Static Web Apps (Free tier)
-- **API:** Azure Functions v4 (Node 20, TypeScript) on Flex Consumption, called cross-origin (platform CORS)
+- **API:** Azure Functions v4 (Node 20, TypeScript) on Flex Consumption, called cross-origin (app-level CORS)
 - **Data:** Azure Table Storage (subscriptions), RDW Open Data API (vehicle data, no key required)
 - **Email:** Azure Communication Services (double opt-in confirmation + APK reminders at T-60/T-30/T-7)
 - **Infra:** Bicep in `infra/`, resource group `rg-apkwekker` (dedicated, no shared resources)
@@ -34,8 +34,8 @@ wishlist.md build tracker + backlog (todo.txt-style)
 ## Development
 
 ```bash
-cd api && npm install && npm test      # API unit tests (29)
-cd frontend && npm install && npm run dev   # Frontend dev server + tests (11)
+cd api && npm install env -u NODE_ENV && npm test      # API unit tests (29)
+cd frontend && npm install && npm test                   # Frontend unit tests + playwright config
 ```
 
 ## Deployment
@@ -48,6 +48,26 @@ GitHub Actions: `deploy-frontend.yml` (SWA) and `deploy-api.yml` (Functions Flex
 
 **Required GitHub vars:**
 - `API_BASE_URL` — Function App base URL for frontend build
+
+## Production verification
+
+Current frontend tests: `11 passed`.
+Frontend build: verified with `npm run build`.
+
+Production E2E status: **Playwright coverage added, but not yet run in a browser-capable environment.**
+Include in CI: add a Playwright job with `ubuntu-latest`
+and install/run tests via `npx playwright install --with-deps chromium && npm run test:e2e`.
+
+The added production E2E spec covers:
+- homepage load
+- valid kenteken happy path with vehicle passport
+- invalid kenteken client validation
+- 404 for unknown kenteken
+- subscribe error handling
+- invalid confirm token redirect
+- invalid unsubscribe token redirect
+- static pages: privacy, bevestigd, afgemeld
+- API health endpoint
 
 ## Azure resources (rg-apkwekker)
 
