@@ -46,14 +46,14 @@ test.describe("APKwekker production E2E", () => {
     await expect(page.locator("#subscribe-section")).toBeHidden();
   });
 
-  test("subscribe shows message and keeps optimistic UI hidden when network fails", async ({ page }) => {
+  test("subscribe shows error message when network fails after valid lookup", async ({ page }) => {
+    await page.fill("#kenteken-input", "00-JTB-5");
+    await page.click("#kenteken-form button[type='submit']");
+    await expect(page.locator("#result .passport-card")).toBeVisible();
+
     await page.route(`${API_BASE}/api/subscribe`, (route) =>
       route.fulfill({ status: 500, body: JSON.stringify({ error: "boom" }) })
     );
-
-    await page.fill("#kenteken-input", "AA-11-BB");
-    await page.click("#kenteken-form button[type='submit']");
-    await expect(page.locator("#result .passport-card")).toBeVisible();
 
     const now = Date.now();
     await page.fill("#email-input", `e2e-${now}@example.com`);
