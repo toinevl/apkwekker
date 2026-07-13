@@ -2,12 +2,12 @@
 <!-- NOTE: update domain once the production domain is final -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://apkwekker.nl/</loc>
+    <loc>https://victorious-pebble-0f3357803.7.azurestaticapps.net/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://apkwekker.nl/privacy.html</loc>
+    <loc>https://victorious-pebble-0f3357803.7.azurestaticapps.net/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

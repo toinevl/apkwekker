@@ -4,4 +4,4 @@ Disallow: /bevestigd.html
 Disallow: /afgemeld.html
 Disallow: /ongeldig.html
 
-Sitemap: https://apkwekker.nl/sitemap.xml
+Sitemap: https://victorious-pebble-0f3357803.7.azurestaticapps.net/sitemap.xml
