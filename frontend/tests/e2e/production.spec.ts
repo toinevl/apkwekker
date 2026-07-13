@@ -13,7 +13,7 @@ test.describe("APKwekker production E2E", () => {
   });
 
   test("loads the homepage", async ({ page }) => {
-    await expect(page.locator("h1")).to containText("Nooit meer je APK vergeten");
+    await expect(page.locator("h1")).toContainText("Nooit meer je APK vergeten");
   });
 
   test("happy path: valid kenteken shows vehicle passport", async ({ page }) => {
@@ -89,11 +89,11 @@ test.describe("APKwekker production E2E", () => {
   });
 
   test("health endpoint is ok", async ({ page }) => {
-    const result = await page.evaluate(async () => {
+    const result = (await page.evaluate(async () => {
       const res = await fetch(`${API_BASE}/api/health`);
-      const json = await res.json();
+      const json = (await res.json()) as { status?: string };
       return { status: res.status, body: json };
-    });
+    })) as { status: number; body: { status?: string } };
 
     expect(result.status).toBe(200);
     expect(result.body.status).toBe("ok");
