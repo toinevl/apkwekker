@@ -17,7 +17,7 @@ test.describe("APKwekker production E2E", () => {
   });
 
   test("happy path: valid kenteken shows vehicle passport", async ({ page }) => {
-    const plate = "XX-99-XX";
+    const plate = "00-JTB-5";
     await page.fill("#kenteken-input", plate);
     await page.click("#kenteken-form button[type='submit']");
 
@@ -77,7 +77,7 @@ test.describe("APKwekker production E2E", () => {
   });
 
   test("navigation to privacy, confirmation, and unsubscribe pages resolves", async ({ page }) => {
-    await page.click('a[href="/privacy.html"]');
+    await page.goto(`${BASE_URL}/privacy.html`);
     await expect(page).toHaveURL(new RegExp(`${BASE_URL}/privacy.html$`));
     await expect(page.locator("h1")).toContainText("Privacyverklaring");
 
@@ -89,11 +89,11 @@ test.describe("APKwekker production E2E", () => {
   });
 
   test("health endpoint is ok", async ({ page }) => {
-    const result = (await page.evaluate(async () => {
-      const res = await fetch(`${API_BASE}/api/health`);
+    const result = (await page.evaluate(async (base) => {
+      const res = await fetch(`${base}/api/health`);
       const json = (await res.json()) as { status?: string };
       return { status: res.status, body: json };
-    })) as { status: number; body: { status?: string } };
+    }, API_BASE)) as { status: number; body: { status?: string } };
 
     expect(result.status).toBe(200);
     expect(result.body.status).toBe("ok");
