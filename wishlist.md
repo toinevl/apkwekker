@@ -36,8 +36,8 @@ x 2026-07-13 (A) E2E verify: happy path AND error path (bad kenteken → 404, ba
 x 2026-07-13 (A) Verify subscribe → confirm flow → row in Table Storage + ACS email delivery confirmed +verify #045
 
 ## Phase 4 — Marketing & docs
-(A) Marketing plan docs/marketing-plan.md (SEO, content calendar, launch channels) +marketing #050
-(B) SEO basics: meta tags, sitemap.xml, robots.txt, OG image +marketing #051
+x 2026-07-13 (A) Marketing plan docs/marketing-plan.md (SEO, content calendar, launch channels) +marketing #050
+x 2026-07-13 (A) SEO basics: meta tags, sitemap.xml, robots.txt, OG image, Twitter Cards, JSON-LD structured data +marketing #051
 (A) GitHub wiki: Home, Architecture, Deployment, Business Plan, Marketing, Artifact Log +docs #052
 
 ## Backlog (post-launch, future reference)
