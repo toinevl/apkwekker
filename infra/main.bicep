@@ -11,6 +11,13 @@ param location string = 'westeurope'
 @description('Allowed CORS origins for the Function App platform CORS (lesson: persist platform CORS in Bicep)')
 param corsAllowedOrigins array = []
 
+@description('Origins allowed by the APP-level CORS layer (api/src/lib/cors.ts). Distinct from corsAllowedOrigins above, which is Azure platform CORS. Must list every hostname the frontend is served from, including SWA custom domains.')
+param allowedOrigins array = [
+  'https://victorious-pebble-0f3357803.7.azurestaticapps.net'
+  'https://apkwekker.autos'
+  'https://apkwekker.stoncoo.com'
+]
+
 var storageName = 'st${baseName}${uniqueString(resourceGroup().id)}'
 var functionAppName = 'func-${baseName}'
 var planName = 'plan-${baseName}'
@@ -108,11 +115,26 @@ resource functionApp 'Microsoft.Web/sites@2023-12-01' = {
       cors: {
         allowedOrigins: corsAllowedOrigins
       }
+      // NOTE: siteConfig.appSettings REPLACES the entire app-settings collection on
+      // every deploy. Any setting missing here is deleted from the live app, even if
+      // it was added by hand with `az functionapp config appsettings set`.
+      // Before 2026-08-19 this list held only the four storage/telemetry entries,
+      // so a deploy would have wiped ALLOWED_ORIGINS, BASE_URL, FRONTEND_URL,
+      // MAIL_FROM and ACS_CONNECTION — breaking CORS, confirm links and all email.
       appSettings: [
         { name: 'AzureWebJobsStorage', value: storageConnection }
         { name: 'DEPLOYMENT_STORAGE_CONNECTION_STRING', value: storageConnection }
         { name: 'APPLICATIONINSIGHTS_CONNECTION_STRING', value: appInsights.properties.ConnectionString }
         { name: 'STORAGE_CONNECTION', value: storageConnection }
+        // App-level CORS allowlist, read by api/src/lib/cors.ts and split on ','.
+        // A missing origin makes the API answer 200 while the browser discards the
+        // response for a missing ACAO header — looks healthy server-side (bug #070).
+        { name: 'ALLOWED_ORIGINS', value: join(allowedOrigins, ',') }
+        { name: 'BASE_URL', value: 'https://${functionAppName}.azurewebsites.net' }
+        { name: 'FRONTEND_URL', value: 'https://${swa.properties.defaultHostname}' }
+        { name: 'MAIL_FROM', value: 'DoNotReply@${managedDomain.properties.mailFromSenderDomain}' }
+        // Secret resolved at deploy time from the ACS resource — never stored in source.
+        { name: 'ACS_CONNECTION', value: acs.listKeys().primaryConnectionString }
       ]
     }
     httpsOnly: true
