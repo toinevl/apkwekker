@@ -82,7 +82,8 @@ export async function subscribeHandler(req: HttpRequest, context: InvocationCont
     await table.upsertEntity(entity, "Replace");
 
     const confirmUrl = `${baseUrl()}/api/confirm?token=${entity.confirmToken}`;
-    const mail = confirmationEmail(formatKenteken(kenteken), confirmUrl);
+    const unsubscribeUrl = `${baseUrl()}/api/unsubscribe?token=${entity.unsubscribeToken}`;
+    const mail = confirmationEmail(formatKenteken(kenteken), confirmUrl, unsubscribeUrl);
     await getEmailSender().send({ to: email, ...mail });
 
     return withCors(req, { status: 200, jsonBody: { message: "Check je inbox om je aanmelding te bevestigen." } });

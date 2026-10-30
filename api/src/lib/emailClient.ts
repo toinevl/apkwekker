@@ -5,6 +5,8 @@ export interface OutgoingEmail {
   subject: string;
   html: string;
   plainText: string;
+  /** Custom SMTP headers (e.g. List-Unsubscribe) passed through to ACS. */
+  headers?: Record<string, string>;
 }
 
 export interface EmailSender {
@@ -32,6 +34,7 @@ class AcsSender implements EmailSender {
       senderAddress: this.from,
       content: { subject: mail.subject, html: mail.html, plainText: mail.plainText },
       recipients: { to: [{ address: mail.to }] },
+      headers: mail.headers,
     });
     await poller.pollUntilDone();
   }

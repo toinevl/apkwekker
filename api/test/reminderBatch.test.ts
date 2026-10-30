@@ -78,7 +78,10 @@ describe("runReminderBatch", () => {
     expect(result).toEqual({ checked: 1, sent: 1, errors: 0 });
     expect(sent).toHaveLength(1);
     expect(sent[0].to).toBe("toine@example.nl");
-    expect(sent[0].subject).toContain("00-JTB-5");
+    // Kenteken zit niet meer in het subject (admin-taal, zie email-copy-review) maar wél in de body,
+    // en de mail draagt List-Unsubscribe headers voor bulk-sender compliance.
+    expect(sent[0].plainText).toContain("00-JTB-5");
+    expect(sent[0].headers?.["List-Unsubscribe"]).toContain("/api/unsubscribe");
     // remindersSent persisted with the due threshold (30 days out → the 60-day threshold fires first)
     expect(subscriptionsTable.upsertEntity).toHaveBeenCalledTimes(1);
     const persisted = subscriptionsTable.upsertEntity.mock.calls[0][0] as { remindersSent: string };
