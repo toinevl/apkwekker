@@ -137,6 +137,19 @@ az rest --method PUT \
   --body '{"location":"westeurope","properties":{"domainManagement":"CustomerManaged"}}'
 ```
 
+### 4.1b Link the domain to the Communication Service (ONTBREEK in de eerste versie van dit runbook)
+
+Een nieuw domein-resource onder `email-apkwekker` is nog NIET zichtbaar voor `acs-apkwekker`.
+Zonder deze stap faalt elke send met `DomainNotLinked` (404) — en retourneert subscribe een 500
+(gezien 2026-10-30; propagatie van de link duurt tot ~1 min na de PATCH). Voeg het domein toe aan
+`properties.linkedDomains` van de Communication Service, naast het bestaande AzureManagedDomain:
+
+```bash
+az rest --method PATCH \
+  --url "https://management.azure.com/subscriptions/2dbeb3f1-e45d-4207-a7e9-185330aad74b/resourceGroups/rg-apkwekker/providers/Microsoft.Communication/CommunicationServices/acs-apkwekker?api-version=2023-04-01" \
+  --body '{"properties":{"linkedDomains":["<id AzureManagedDomain>","<id notif.apkwekker.autos>"]}}'
+```
+
 ### 4.2 Read the verification records — copy them VERBATIM into Porkbun
 
 ```bash

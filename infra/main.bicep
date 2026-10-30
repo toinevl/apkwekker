@@ -12,7 +12,6 @@ param location string = 'westeurope'
 param allowedOrigins array = [
   'https://victorious-pebble-0f3357803.7.azurestaticapps.net'
   'https://apkwekker.autos'
-  'https://apkwekker.stoncoo.com'
 ]
 
 @description('Allowed CORS origins for the Function App PLATFORM CORS. Defaults to the same list as allowedOrigins — the Flex Consumption host answers OPTIONS preflight itself BEFORE app code runs (wishlist #071/#080), so this list MUST be populated; an empty list makes every browser POST impossible. Lesson: an az-only `az functionapp cors add` is wiped by the next bicep apply.')
@@ -141,7 +140,7 @@ resource functionApp 'Microsoft.Web/sites@2023-12-01' = {
         { name: 'ALLOWED_ORIGINS', value: join(allowedOrigins, ',') }
         { name: 'BASE_URL', value: 'https://${functionAppName}.azurewebsites.net' }
         { name: 'FRONTEND_URL', value: 'https://apkwekker.autos' }
-        { name: 'MAIL_FROM', value: 'DoNotReply@${managedDomain.properties.mailFromSenderDomain}' }
+        { name: 'MAIL_FROM', value: 'no-reply@notif.apkwekker.autos' }
         // Secret for authenticated reminder trigger endpoints (/api/reminders/run, /api/reminders/status).
         // Value comes from @secure() param reminderTriggerSecret — never stored in source.
         { name: 'REMINDER_TRIGGER_SECRET', value: reminderTriggerSecret }
