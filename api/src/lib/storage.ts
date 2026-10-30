@@ -1,6 +1,7 @@
 import { TableClient, TableServiceClient, odata } from "@azure/data-tables";
 
-const TABLE_NAME = "subscriptions";
+const SUBSCRIPTIONS_TABLE = "subscriptions";
+const RUNS_TABLE = "runs";
 
 export interface SubscriptionEntity {
   partitionKey: string; // kenteken (normalized)
@@ -16,8 +17,10 @@ export interface SubscriptionEntity {
   remindersSent: string; // comma list e.g. '60,30'
 }
 
-let client: TableClient | null = null;
-let tableEnsured = false;
+let subscriptionsClient: TableClient | null = null;
+let runsClient: TableClient | null = null;
+let subscriptionsEnsured = false;
+let runsEnsured = false;
 
 function connectionString(): string {
   const conn = process.env.STORAGE_CONNECTION;
@@ -26,28 +29,53 @@ function connectionString(): string {
 }
 
 export function getTableClient(): TableClient {
-  if (!client) {
-    client = TableClient.fromConnectionString(connectionString(), TABLE_NAME);
+  if (!subscriptionsClient) {
+    subscriptionsClient = TableClient.fromConnectionString(connectionString(), SUBSCRIPTIONS_TABLE);
   }
-  return client;
+  return subscriptionsClient;
+}
+
+export function getRunsTableClient(): TableClient {
+  if (!runsClient) {
+    runsClient = TableClient.fromConnectionString(connectionString(), RUNS_TABLE);
+  }
+  return runsClient;
 }
 
 /** For tests. */
 export function setTableClient(mock: TableClient | null): void {
-  client = mock;
-  tableEnsured = mock !== null;
+  subscriptionsClient = mock;
+  subscriptionsEnsured = mock !== null;
+}
+
+/** For tests: inject a mock runs table client. */
+export function setRunsTableClient(mock: TableClient | null): void {
+  runsClient = mock;
+  runsEnsured = mock !== null;
 }
 
 export async function ensureTable(): Promise<void> {
-  if (tableEnsured) return;
+  if (subscriptionsEnsured) return;
   const service = TableServiceClient.fromConnectionString(connectionString());
   try {
-    await service.createTable(TABLE_NAME);
+    await service.createTable(SUBSCRIPTIONS_TABLE);
   } catch (err: unknown) {
     const code = (err as { statusCode?: number }).statusCode;
     if (code !== 409) throw err; // 409 = already exists
   }
-  tableEnsured = true;
+  subscriptionsEnsured = true;
+}
+
+export async function ensureRunsTable(): Promise<void> {
+  if (runsEnsured) return;
+  const service = TableServiceClient.fromConnectionString(connectionString());
+  try {
+    await service.createTable(RUNS_TABLE);
+  } catch (err: unknown) {
+    const code = (err as { statusCode?: number }).statusCode;
+    if (code !== 409) throw err; // 409 = already exists
+  }
+  runsEnsured = true;
 }
 
 export async function findByToken(

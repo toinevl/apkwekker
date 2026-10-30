@@ -9,7 +9,13 @@ function allowedOrigins(): string[] {
     .filter(Boolean);
 }
 
+/** Returns true when app-level CORS is enabled (default: 'on'). */
+function appLevelCorsEnabled(): boolean {
+  return (process.env.APP_LEVEL_CORS || "on").toLowerCase() !== "off";
+}
+
 export function corsHeaders(req: HttpRequest): Record<string, string> {
+  if (!appLevelCorsEnabled()) return {};
   const origin = req.headers.get("origin") ?? "";
   if (origin && allowedOrigins().includes(origin)) {
     return {
@@ -26,6 +32,7 @@ export function corsHeaders(req: HttpRequest): Record<string, string> {
 /** Returns a 204 preflight response for OPTIONS requests, or null to continue. */
 export function handlePreflight(req: HttpRequest): HttpResponseInit | null {
   if (req.method === "OPTIONS") {
+    // When APP_LEVEL_CORS=off, platform CORS handles preflight; we still return 204 but without CORS headers.
     return { status: 204, headers: corsHeaders(req) };
   }
   return null;

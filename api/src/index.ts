@@ -4,3 +4,5 @@ import "./functions/subscribe";
 import "./functions/confirm";
 import "./functions/unsubscribe";
 import "./functions/sendReminders";
+import "./functions/runReminders";
+import "./functions/reminderStatus";
