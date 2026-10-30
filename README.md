@@ -46,9 +46,9 @@ cd e2e && npm ci && API_BASE_URL=https://func-apkwekker.azurewebsites.net npx pl
 
 GitHub Actions:
 - `deploy-frontend.yml` — SWA
-- `deploy-api.yml` — Functions Flex Consumption via Azure login + `az functionapp deploy`
+- `deploy-api.yml` — Functions Flex Consumption via scm publish (zip, `application/zip`) + smoke test incl. nieuwe endpoints
 - `reminders-cron.yml` — Daily 06:30 UTC, triggers reminder batch via authenticated endpoint
-- `liveness.yml` — Daily 07:30 UTC, checks `/api/health` + reminder heartbeat; opens alert issue on failure
+- `liveness-check.yml` — Daily 07:30 UTC, checks `/api/health` + reminder heartbeat; opens alert issue on failure
 - `e2e.yml` — Playwright E2E against production on push to `main`
 
 All workflows support `workflow_dispatch`.
