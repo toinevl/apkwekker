@@ -1,7 +1,10 @@
 import { API_BASE } from "./config";
 import { normalizeKenteken, isValidKenteken } from "./lib/kenteken";
 import { toPassportView, errorMessage, VehiclePassport } from "./lib/passport";
+import { initAppInsights } from "./lib/appinsights";
 import "./style.css";
+
+void initAppInsights();
 
 const form = document.getElementById("kenteken-form") as HTMLFormElement;
 const input = document.getElementById("kenteken-input") as HTMLInputElement;

@@ -321,6 +321,206 @@ footer a {
   color: var(--ink);
 }
 
+/* ---- Blog ---- */
+.site-header .logo {
+  text-decoration: none;
+  color: inherit;
+}
+
+.site-nav {
+  margin-left: auto;
+  font-size: 0.95rem;
+}
+
+.site-nav a {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius);
+}
+
+.site-nav a:hover {
+  background: var(--plate-yellow);
+}
+
+.hero--compact {
+  padding: 1.5rem 0 1.25rem;
+  text-align: left;
+}
+
+.hero--compact h1 {
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+}
+
+.hero--compact p.sub {
+  margin: 0;
+}
+
+.blog-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.blog-card {
+  display: block;
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  border-top: 4px solid var(--plate-yellow);
+  box-shadow: 0 1px 4px rgba(26, 26, 46, 0.06);
+  transition: transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 26, 46, 0.14);
+}
+
+.blog-card h2 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  margin: 0 0 0.4rem;
+}
+
+.blog-card p {
+  margin: 0 0 0.5rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.blog-more {
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 0.9rem;
+}
+
+.crumbs {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.crumbs a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.crumbs a:hover {
+  text-decoration: underline;
+}
+
+.article {
+  margin-top: 0.5rem;
+}
+
+.article h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 5vw, 2.4rem);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.article h2 {
+  font-family: var(--font-display);
+  margin-top: 2rem;
+}
+
+.article table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  background: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.article th,
+.article td {
+  text-align: left;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid rgba(26, 26, 46, 0.08);
+}
+
+.article th {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.article blockquote {
+  margin: 1.5rem 0;
+  padding: 0.75rem 1.25rem;
+  border-left: 4px solid var(--plate-yellow);
+  background: var(--card);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.article .sources {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-top: 2.5rem;
+}
+
+.cta-box {
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.cta-box h2 {
+  font-family: var(--font-display);
+  margin: 0 0 0.35rem;
+  color: var(--plate-yellow);
+}
+
+.cta-box p {
+  margin: 0 0 1rem;
+  color: #d8d5cc;
+}
+
+.cta-box .cta-link {
+  display: inline-block;
+  background: var(--plate-yellow);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.85rem 2rem;
+  border-radius: var(--radius);
+}
+
+.cta-box .cta-link:hover {
+  background: var(--plate-yellow-dark);
+}
+
+.related {
+  margin-top: 2.5rem;
+}
+
+.related h2 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+}
+
+.related ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.related li {
+  padding: 0.4rem 0;
+}
+
+.related a {
+  color: var(--ink);
+}
+
 /* ---- Simple message pages ---- */
 .message-page {
   text-align: center;
