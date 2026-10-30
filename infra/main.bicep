@@ -8,15 +8,15 @@ param baseName string = 'apkwekker'
 @description('Location for compute/storage')
 param location string = 'westeurope'
 
-@description('Allowed CORS origins for the Function App platform CORS (lesson: persist platform CORS in Bicep)')
-param corsAllowedOrigins array = []
-
-@description('Origins allowed by the APP-level CORS layer (api/src/lib/cors.ts). Distinct from corsAllowedOrigins above, which is Azure platform CORS. Must list every hostname the frontend is served from, including SWA custom domains.')
+@description('Origins allowed by the APP-level CORS layer (api/src/lib/cors.ts) via the ALLOWED_ORIGINS app setting. Must list every hostname the frontend is served from, including SWA custom domains.')
 param allowedOrigins array = [
   'https://victorious-pebble-0f3357803.7.azurestaticapps.net'
   'https://apkwekker.autos'
   'https://apkwekker.stoncoo.com'
 ]
+
+@description('Allowed CORS origins for the Function App PLATFORM CORS. Defaults to the same list as allowedOrigins — the Flex Consumption host answers OPTIONS preflight itself BEFORE app code runs (wishlist #071/#080), so this list MUST be populated; an empty list makes every browser POST impossible. Lesson: an az-only `az functionapp cors add` is wiped by the next bicep apply.')
+param corsAllowedOrigins array = allowedOrigins
 
 @description('Secret for authenticated reminder trigger endpoints (/api/reminders/run and /api/reminders/status). Must be a high-entropy string.')
 @secure()
@@ -140,7 +140,7 @@ resource functionApp 'Microsoft.Web/sites@2023-12-01' = {
         // response for a missing ACAO header — looks healthy server-side (bug #070).
         { name: 'ALLOWED_ORIGINS', value: join(allowedOrigins, ',') }
         { name: 'BASE_URL', value: 'https://${functionAppName}.azurewebsites.net' }
-        { name: 'FRONTEND_URL', value: 'https://${swa.properties.defaultHostname}' }
+        { name: 'FRONTEND_URL', value: 'https://apkwekker.autos' }
         { name: 'MAIL_FROM', value: 'DoNotReply@${managedDomain.properties.mailFromSenderDomain}' }
         // Secret for authenticated reminder trigger endpoints (/api/reminders/run, /api/reminders/status).
         // Value comes from @secure() param reminderTriggerSecret — never stored in source.
