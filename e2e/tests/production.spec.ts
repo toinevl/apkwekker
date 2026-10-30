@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 const API_BASE = process.env.API_BASE_URL ?? "";
-const BASE_URL = process.env.BASE_URL ?? "https://victorious-pebble-0f3357803.7.azurestaticapps.net";
+const BASE_URL = process.env.BASE_URL ?? "https://apkwekker.autos";
 
 if (!API_BASE) {
   throw new Error("API_BASE_URL is required for production E2E tests");
