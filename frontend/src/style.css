@@ -319,6 +319,9 @@ footer {
 
 footer a {
   color: var(--ink);
+  /* Tap-target ≥44px (QA #083: footer-links waren 19-22px hoog) */
+  display: inline-block;
+  padding: 0.75rem 0.5rem;
 }
 
 /* ---- Blog ---- */
