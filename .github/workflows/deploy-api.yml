@@ -56,7 +56,7 @@ jobs:
             "https://func-apkwekker.scm.azurewebsites.net/api/publish?type=zip&async=false" \
             --max-time 600)
           echo "publish HTTP $code"
-          cat /tmp/publish-resp.txt || true
+          cat /tmp/publish-resp.txt || echo "(geen response body)"
           if [ "$code" != "200" ] && [ "$code" != "202" ]; then
             echo "::error::Flex zip-deploy faalde met HTTP $code"
             exit 1
