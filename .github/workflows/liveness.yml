@@ -1,0 +1,89 @@
+name: Liveness check
+
+on:
+  schedule:
+    - cron: '30 7 * * *'
+  workflow_dispatch:
+
+jobs:
+  liveness:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Check health endpoint
+        id: health
+        run: |
+          set -euo pipefail
+          resp=$(curl -sS -w '\n%{http_code}' https://func-apkwekker.azurewebsites.net/api/health)
+          body=$(echo "$resp" | head -n1)
+          code=$(echo "$resp" | tail -n1)
+          echo "health HTTP $code"
+          echo "$body"
+          if [ "$code" != "200" ] || ! echo "$body" | grep -q '"status":"ok"'; then
+            echo "Health check failed"
+            exit 1
+          fi
+
+      - name: Check reminder status (heartbeat)
+        id: status
+        run: |
+          set -euo pipefail
+          resp=$(curl -sS -w '\n%{http_code}' \
+            -H "x-trigger-secret: ${{ secrets.REMINDER_TRIGGER_SECRET }}" \
+            https://func-apkwekker.azurewebsites.net/api/reminders/status)
+          body=$(echo "$resp" | head -n1)
+          code=$(echo "$resp" | tail -n1)
+          echo "status HTTP $code"
+          echo "$body"
+          if [ "$code" != "200" ]; then
+            echo "Reminder status check failed with status $code"
+            exit 1
+          fi
+
+          # Verify heartbeat exists for today or yesterday
+          today=$(date -u +%F)
+          yesterday=$(date -u -d 'yesterday' +%F)
+          has_today=$(echo "$body" | jq -e --arg d "$today" 'map(.date) | index($d)' > /dev/null && echo true || echo false)
+          has_yesterday=$(echo "$body" | jq -e --arg d "$yesterday" 'map(.date) | index($d)' > /dev/null && echo true || echo false)
+          if [ "$has_today" = "false" ] && [ "$has_yesterday" = "false" ]; then
+            echo "No heartbeat for today ($today) or yesterday ($yesterday)"
+            exit 1
+          fi
+
+      - name: Create or update alert issue on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = '[alert] APKwekker liveness';
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'alert',
+              per_page: 10
+            });
+            const existing = issues.find(i => i.title === title);
+            const body = `Liveness check failed at ${new Date().toISOString()}.
+
+Health endpoint or reminder heartbeat missing. Check the workflow run for details:
+${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}
+
+Run the \`Reminders cron\` workflow manually or investigate the Function App.`;
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                body
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ['alert']
+              });
+            }

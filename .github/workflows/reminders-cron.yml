@@ -1,0 +1,25 @@
+name: Reminders cron
+
+on:
+  schedule:
+    - cron: '30 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  run-reminders:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger reminders
+        run: |
+          set -euo pipefail
+          resp=$(curl -sS -w '\n%{http_code}' -X POST \
+            -H "x-trigger-secret: ${{ secrets.REMINDER_TRIGGER_SECRET }}" \
+            https://func-apkwekker.azurewebsites.net/api/reminders/run)
+          body=$(echo "$resp" | head -n1)
+          code=$(echo "$resp" | tail -n1)
+          echo "HTTP $code"
+          echo "$body"
+          if [ "$code" != "200" ]; then
+            echo "Reminder trigger failed with status $code"
+            exit 1
+          fi

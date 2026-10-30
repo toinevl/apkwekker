@@ -18,6 +18,10 @@ param allowedOrigins array = [
   'https://apkwekker.stoncoo.com'
 ]
 
+@description('Secret for authenticated reminder trigger endpoints (/api/reminders/run and /api/reminders/status). Must be a high-entropy string.')
+@secure()
+param reminderTriggerSecret string
+
 var storageName = 'st${baseName}${uniqueString(resourceGroup().id)}'
 var functionAppName = 'func-${baseName}'
 var planName = 'plan-${baseName}'
@@ -45,6 +49,11 @@ resource tableService 'Microsoft.Storage/storageAccounts/tableServices@2023-05-0
 resource subscriptionsTable 'Microsoft.Storage/storageAccounts/tableServices/tables@2023-05-01' = {
   parent: tableService
   name: 'subscriptions'
+}
+
+resource runsTable 'Microsoft.Storage/storageAccounts/tableServices/tables@2023-05-01' = {
+  parent: tableService
+  name: 'runs'
 }
 
 resource deployContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-05-01' = {
@@ -133,6 +142,9 @@ resource functionApp 'Microsoft.Web/sites@2023-12-01' = {
         { name: 'BASE_URL', value: 'https://${functionAppName}.azurewebsites.net' }
         { name: 'FRONTEND_URL', value: 'https://${swa.properties.defaultHostname}' }
         { name: 'MAIL_FROM', value: 'DoNotReply@${managedDomain.properties.mailFromSenderDomain}' }
+        // Secret for authenticated reminder trigger endpoints (/api/reminders/run, /api/reminders/status).
+        // Value comes from @secure() param reminderTriggerSecret — never stored in source.
+        { name: 'REMINDER_TRIGGER_SECRET', value: reminderTriggerSecret }
         // Secret resolved at deploy time from the ACS resource — never stored in source.
         { name: 'ACS_CONNECTION', value: acs.listKeys().primaryConnectionString }
       ]

@@ -30,6 +30,8 @@ wishlist.md build tracker + backlog (todo.txt-style)
 | `POST /api/subscribe` | Subscribe (double opt-in) |
 | `GET /api/confirm?token=` | Confirm subscription |
 | `GET /api/unsubscribe?token=` | One-click unsubscribe |
+| `POST /api/reminders/run` | Trigger reminder batch manually (auth: `x-trigger-secret`) |
+| `GET /api/reminders/status` | Last 7 heartbeat rows (auth: `x-trigger-secret`) |
 | Timer `sendReminders` | Daily 07:00 UTC, sends T-60/T-30/T-7 reminders |
 
 ## Development
@@ -45,6 +47,8 @@ cd e2e && npm ci && API_BASE_URL=https://func-apkwekker.azurewebsites.net npx pl
 GitHub Actions:
 - `deploy-frontend.yml` — SWA
 - `deploy-api.yml` — Functions Flex Consumption via Azure login + `az functionapp deploy`
+- `reminders-cron.yml` — Daily 06:30 UTC, triggers reminder batch via authenticated endpoint
+- `liveness.yml` — Daily 07:30 UTC, checks `/api/health` + reminder heartbeat; opens alert issue on failure
 - `e2e.yml` — Playwright E2E against production on push to `main`
 
 All workflows support `workflow_dispatch`.
@@ -52,6 +56,7 @@ All workflows support `workflow_dispatch`.
 **Required GitHub secrets:**
 - `AZURE_STATIC_WEB_APPS_API_TOKEN` — SWA deployment token
 - `AZURE_CREDENTIALS` — Azure service principal JSON (Contributor on rg-apkwekker)
+- `REMINDER_TRIGGER_SECRET` — High-entropy secret for `/api/reminders/run` and `/api/reminders/status`
 
 **Required GitHub vars:**
 - `API_BASE_URL` — Function App base URL for frontend build and E2E
