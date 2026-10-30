@@ -39,16 +39,28 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Deploy to Azure Functions (Flex Consumption)
-        uses: azure/cli@v2
-        with:
-          azcliversion: latest
-          inlineScript: |
-            az functionapp deploy \
-              --resource-group rg-apkwekker \
-              --name func-apkwekker \
-              --src-path apkwekker-api.zip \
-              --type zip \
-              --async false || true
+        run: |
+          set -euo pipefail
+          # az functionapp deploy is kapot voor Flex zip-deploy sinds de CLI de
+          # scm /api/publish endpoint met application/octet-stream aanroept (HTTP 415).
+          # Werkende route (bewezen 2026-10-30): POST zip met Content-Type: application/zip.
+          # Publish-credentials worden live opgehaald via ARM — geen secrets in de repo.
+          CREDS=$(az rest --method POST \
+            --url "/subscriptions/$(az account show --query id -o tsv)/resourceGroups/rg-apkwekker/providers/Microsoft.Web/sites/func-apkwekker/config/publishingcredentials/list?api-version=2023-12-01")
+          PUBUSER=$(echo "$CREDS" | jq -r .properties.publishingUserName)
+          PUBPASS=$(echo "$CREDS" | jq -r .properties.publishingPassword)
+          code=$(curl -s -o /tmp/publish-resp.txt -w "%{http_code}" \
+            -u "$PUBUSER:$PUBPASS" \
+            -X POST -H "Content-Type: application/zip" \
+            --data-binary @apkwekker-api.zip \
+            "https://func-apkwekker.scm.azurewebsites.net/api/publish?type=zip&async=false" \
+            --max-time 600)
+          echo "publish HTTP $code"
+          cat /tmp/publish-resp.txt || true
+          if [ "$code" != "200" ] && [ "$code" != "202" ]; then
+            echo "::error::Flex zip-deploy faalde met HTTP $code"
+            exit 1
+          fi
 
       - name: Smoke test (cold start wait — lesson learned)
         run: |
@@ -59,4 +71,7 @@ jobs:
           echo "error path check (expect 400 or 404):"
           code=$(curl -s -o /dev/null -w "%{http_code}" https://func-apkwekker.azurewebsites.net/api/vehicle/XX)
           if [ "$code" != "400" ] && [ "$code" != "404" ]; then echo "Expected 400/404, got $code" && exit 1; fi
+          echo "new endpoints registered (expect 401 wrong secret, not 404):"
+          code=$(curl -s -o /dev/null -w "%{http_code}" -X POST https://func-apkwekker.azurewebsites.net/api/reminders/run -H "x-trigger-secret: verkeerd")
+          if [ "$code" != "401" ]; then echo "::error::/api/reminders/run niet live (HTTP $code)" && exit 1; fi
           echo "OK"
