@@ -4,4 +4,4 @@ Disallow: /bevestigd.html
 Disallow: /afgemeld.html
 Disallow: /ongeldig.html
 
-Sitemap: https://apkwekker.autos/sitemap.xml
+Sitemap: https://apkwekker.com/sitemap.xml
