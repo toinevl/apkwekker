@@ -11,6 +11,7 @@ param location string = 'westeurope'
 @description('Origins allowed by the APP-level CORS layer (api/src/lib/cors.ts) via the ALLOWED_ORIGINS app setting. Must list every hostname the frontend is served from, including SWA custom domains.')
 param allowedOrigins array = [
   'https://victorious-pebble-0f3357803.7.azurestaticapps.net'
+  'https://apkwekker.com'
   'https://apkwekker.autos'
 ]
 
@@ -139,7 +140,7 @@ resource functionApp 'Microsoft.Web/sites@2023-12-01' = {
         // response for a missing ACAO header — looks healthy server-side (bug #070).
         { name: 'ALLOWED_ORIGINS', value: join(allowedOrigins, ',') }
         { name: 'BASE_URL', value: 'https://${functionAppName}.azurewebsites.net' }
-        { name: 'FRONTEND_URL', value: 'https://apkwekker.autos' }
+        { name: 'FRONTEND_URL', value: 'https://apkwekker.com' }
         { name: 'MAIL_FROM', value: 'no-reply@notif.apkwekker.autos' }
         // Secret for authenticated reminder trigger endpoints (/api/reminders/run, /api/reminders/status).
         // Value comes from @secure() param reminderTriggerSecret — never stored in source.
