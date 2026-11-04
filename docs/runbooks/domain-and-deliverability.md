@@ -1,5 +1,7 @@
 # Runbook: DNS-control audit, canonical host & ACS deliverability — apkwekker
 
+> **STATUS 2026-11-04: EXECUTIE VOLTOOID.** §4 is uitgevoerd (notif.apkwekker.autos live, SPF/DKIM Verified, gotcha §4.1b ontdekt tijdens executie). Canonieke host is sinds 2026-11-04 **apkwekker.com** (zie wishlist #088); apkwekker.autos en apkwekker.stoncoo.com 301'en erheen. Dit document blijft als historische referentie + herhaalrecept.
+
 Status: **READ-ONLY audit + runbook** (executed 2026-10-30, subscription `2dbeb3f1-e45d-4207-a7e9-185330aad74b`, rg-apkwekker).
 Covers wishlist **#061** (canonical domain + email sender identity) and **#087** (execution prep).
 **No DNS or Azure state was changed.** Every mutating step below is gated behind a decision in

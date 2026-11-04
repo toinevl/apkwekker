@@ -72,13 +72,13 @@ Nagezochte programma's (Daisycon-publieke campagnepagina's, geverifieerd 22-10-2
 | Week | Actie | Deliverable | Eigenaar-actie of bouwen? |
 |---|---|---|---|
 | 1 | **KVK-inschrijving eenmanszaak** (online, ~€82,50) | KVK-nummer | **Eigenaar** |
-| 1 | Domein `apkwekker.nl` registreren (~€10/jr) + eigen SPF/DKIM i.p.v. Azure managed domain | Eigen domein live, mail deliverable | **Eigenaar** (registratie), build: DNS-config |
+| 1 | ~~Domein registreren + eigen SPF/DKIM~~ **AFGEROND vóór planning**: apkwekker.com = primaire host (apkwekker.autos + stoncoo 301'en erheen), mail verstuurt via notif.apkwekker.autos met SPF/DKIM/DMARC live, ontvangst via Porkbun-forwarding (privacy@/dmarc@apkwekker.autos) | Live | ✔ afgerond 2026-10/11 |
 | 2 | 4 evergreen blogartikelen publiceren: "Wat kost rijden zonder APK? (boete 2026)", "APK verlopen: dit moet je nu doen", "Hoe vaak moet een auto naar de APK?", "APK checklist: hier wordt op gekeurd" | `/blog/` met 4 artikelen, sitemap update | Bouwen |
 | 3 | Disclosure-pagina + disclosure in mailtemplates; privacy-update met affiliate-vermelding | Juridisch rond | Bouwen |
 | 3–4 | Affiliate-blokstructuur in voertuigpaspoort + mailtemplates (placeholder-links, nog niet live; events `affiliate_click` met query-param tracking) | Klikbaar instrumenteerbaar blok | Bouwen |
 | 4 | Launch-post Reddit (r/thenetherlands, r/autos) + Tweakers-forum: "Ik bouwde een gratis APK-herinnering, feedback welkom" — show-don't-sell | Eerste 100–150 bezoekers | Eigenaar + bouwen (draft) |
 
-**Exit-criteria maand 1:** KVK-nummer binnen, domein + mail op eigen domein, 4 artikelen live, eerste organische bezoekers (doel ≥150/mnd), disclosure geregeld.
+**Exit-criteria maand 1:** KVK-nummer binnen, ~~domein + mail op eigen domein~~ ✔ geregeld (.com primair, mail via notif.apkwekker.autos), ~~4 artikelen live~~ ✔ live op /blog/, eerste organische bezoekers (doel ≥150/mnd), disclosure geregeld.
 
 ### Maand 2 — Traffic en lijst (week 5–8)
 

@@ -47,4 +47,4 @@ Doelgroep: particuliere autobezitters met een auto van 4+ jaar (APK-plichtig), 3
 
 ## Kosten
 
-€0 advertentiebudget. Enige kosten: hosting (~€10–15/mnd) en optioneel domein apkwekker.nl (~€10/jaar) — sterk aanbevolen voor SEO en e-mail-deliverability (eigen SPF/DKIM domein i.p.v. Azure managed domain).
+€0 advertentiebudget. Kosten: hosting (~€10–15/mnd) + domeinen (apkwekker.com primair, apkwekker.autos/mail — samen ~€15/jaar). Mail-deliverability is geregeld: eigen afzender notif.apkwekker.autos met SPF/DKIM/DMARC (2026-10).

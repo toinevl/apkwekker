@@ -2,7 +2,7 @@
 
 **Nooit meer je APK vergeten.** Vul je kenteken en e-mailadres in en ontvang op tijd een gratis herinnering vóórdat je APK verloopt — plus direct een compleet voertuigpaspoort (merk, model, bouwjaar, brandstof, cataloguswaarde, trekgewicht) uit open RDW-data.
 
-**Live:** https://victorious-pebble-0f3357803.7.azurestaticapps.net
+**Live:** https://apkwekker.com — apkwekker.autos en apkwekker.stoncoo.com 301'en erheen.
 
 ## Architecture
 
