@@ -14,8 +14,8 @@ vi.mock("@azure/communication-email", () => ({
 import { confirmationEmail, reminderEmail, listUnsubscribeHeaders } from "../src/lib/templates";
 import { getEmailSender, setEmailSender } from "../src/lib/emailClient";
 
-const UNSUB = "https://apkwekker.autos/api/unsubscribe?token=tok123";
-const CONFIRM = "https://apkwekker.autos/api/confirm?token=tok456";
+const UNSUB = "https://apkwekker.com/api/unsubscribe?token=tok123";
+const CONFIRM = "https://apkwekker.com/api/confirm?token=tok456";
 
 const passport = {
   kenteken: "XX-99-XX",
@@ -75,7 +75,7 @@ describe("reminderEmail plainText (herstel: kenteken + vervaldatum + afmeldlink)
 describe("reminderEmail CTA en viral-voettekst", () => {
   it("bevat CTA-knop en de doorstuur-voettekst in de html", () => {
     const mail = reminderEmail(passport, 60, UNSUB);
-    expect(mail.html).toContain("https://apkwekker.autos/");
+    expect(mail.html).toContain("https://apkwekker.com/");
     expect(mail.html).toMatch(/Doorsturen|Stuur deze mail door/);
     expect(mail.html).toContain("😉");
   });

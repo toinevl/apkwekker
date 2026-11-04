@@ -1,6 +1,6 @@
 import { VehiclePassport } from "./rdw";
 
-const SITE_URL = "https://apkwekker.autos";
+const SITE_URL = "https://apkwekker.com";
 // CJIB-tarief personenauto 2026 — boetetarieven worden jaarlijks geïndexeerd:
 // bij publicatie van het tarief 2027 dit bedrag opnieuw verifiëren.
 const BOETE_EURO = 190;
