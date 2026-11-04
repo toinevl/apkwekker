@@ -12,7 +12,6 @@ param location string = 'westeurope'
 param allowedOrigins array = [
   'https://victorious-pebble-0f3357803.7.azurestaticapps.net'
   'https://apkwekker.com'
-  'https://apkwekker.autos'
 ]
 
 @description('Allowed CORS origins for the Function App PLATFORM CORS. Defaults to the same list as allowedOrigins — the Flex Consumption host answers OPTIONS preflight itself BEFORE app code runs (wishlist #071/#080), so this list MUST be populated; an empty list makes every browser POST impossible. Lesson: an az-only `az functionapp cors add` is wiped by the next bicep apply.')
