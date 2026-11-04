@@ -29,7 +29,7 @@ function layout(title: string, bodyHtml: string): string {
 ${bodyHtml}
 <hr style="border:none;border-top:1px solid #ddd;margin:24px 0">
 <p style="font-size:12px;color:#666">Je ontvangt deze e-mail omdat dit adres is aangemeld bij APKwekker. Voertuigdata: RDW Open Data.</p>
-<p style="font-size:12px;color:#666">Ken je iemand die altijd te laat is met z'n APK? Stuur 'm door: <a href="https://apkwekker.nl/">apkwekker.nl</a> 😉</p>
+<p style="font-size:12px;color:#666">Ken je iemand die altijd te laat is met z'n APK? Stuur 'm door: <a href="https://apkwekker.com/">apkwekker.com</a> 😉</p>
 </body></html>`;
 }
 ```
@@ -41,7 +41,7 @@ export function confirmationEmail(kenteken: string, confirmUrl: string): { subje
 <p>Hoi!</p>
 <p>Je hebt je aangemeld voor gratis APK-herinneringen voor <strong>${escapeHtml(kenteken)}</strong>. Bevestig je aanmelding en je krijgt automatisch bericht op <strong>60, 30 en 7 dagen</strong> vóór de vervaldatum.</p>
 <p><a href="${escapeHtml(confirmUrl)}" style="background:#F5B301;color:#1a1a2e;padding:12px 24px;text-decoration:none;font-weight:bold;border-radius:6px;display:inline-block">Bevestig aanmelding</a></p>
-<p style="font-size:12px;color:#666">Tussendoor even benieuwd naar je vervaldatum? Die staat <a href="https://apkwekker.nl/">hier</a>.</p>
+<p style="font-size:12px;color:#666">Tussendoor even benieuwd naar je vervaldatum? Die staat <a href="https://apkwekker.com/">hier</a>.</p>
 <p>Heb jij je niet aangemeld? Negeer deze e-mail; je ontvangt dan verder niets.</p>`);
   const plainText = `Bevestig je APK-herinnering voor ${kenteken}.\n\nNa bevestiging ontvang je 60, 30 en 7 dagen voordat je APK verloopt een herinnering.\n\nBevestig via deze link: ${confirmUrl}\n\nHeb jij je niet aangemeld? Negeer deze e-mail.`;
   return { subject, html, plainText };
@@ -67,13 +67,13 @@ export function reminderEmail(
 <p>Hoi!</p>
 <p>De APK van <strong>${escapeHtml(car)}</strong> (${escapeHtml(passport.kenteken)}) is verlopen per ${escapeHtml(passport.vervaldatum_apk ?? "onbekende datum")}. Rijden zonder geldige APK kan een boete van €190 opleveren — en je verzekeraar kan bij schade terugvorderen.</p>
 <p><strong>Het goede nieuws:</strong> met een keuringsafspraak mag je nog rechtstreeks naar de garage rijden.</p>
-<p><a href="https://apkwekker.nl/" style="background:#F5B301;color:#1a1a2e;padding:12px 24px;text-decoration:none;font-weight:bold;border-radius:6px;display:inline-block">Plan nu je keuring</a></p>
+<p><a href="https://apkwekker.com/" style="background:#F5B301;color:#1a1a2e;padding:12px 24px;text-decoration:none;font-weight:bold;border-radius:6px;display:inline-block">Plan nu je keuring</a></p>
 <p style="font-size:12px;color:#666">Bellen met de garage duurt 2 minuten en lost alles op.</p>
 <p style="font-size:12px;color:#666"><a href="${escapeHtml(unsubscribeUrl)}">Afmelden voor deze herinneringen</a></p>` : `
 <p>Hoi!</p>
 <p>De APK van <strong>${escapeHtml(car)}</strong> (${escapeHtml(passport.kenteken)}) verloopt over <strong>${days} dagen</strong>, op ${escapeHtml(passport.vervaldatum_apk ?? "onbekende datum")}.</p>
 <p><strong>Handig om te weten:</strong> laat je binnen 2 maanden vóór die datum keuren en je komt erdoorheen, dan schuift je vervaldatum gewoon een jaar op. Je verliest dus niks door op tijd te gaan.</p>
-<p><a href="https://apkwekker.nl/" style="background:#F5B301;color:#1a1a2e;padding:12px 24px;text-decoration:none;font-weight:bold;border-radius:6px;display:inline-block">Vervaldatum nog even checken</a></p>
+<p><a href="https://apkwekker.com/" style="background:#F5B301;color:#1a1a2e;padding:12px 24px;text-decoration:none;font-weight:bold;border-radius:6px;display:inline-block">Vervaldatum nog even checken</a></p>
 <p style="font-size:12px;color:#666">Deze mail komt van APKwekker — we herinneren je ook bij 30 en ${expired ? "" : "7 "}dagen.</p>
 <p style="font-size:12px;color:#666"><a href="${escapeHtml(unsubscribeUrl)}">Afmelden voor deze herinneringen</a></p>`);
 

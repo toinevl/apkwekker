@@ -10,7 +10,7 @@ Ready-to-paste. Toon, don't sell: we vragen feedback, we verkopen niks. Alle pos
 **Bericht:**
 > Twee jaar geleden mijn APK vergeten. Geen boete gekregen, maar wél een vervelende telefoon met de verzekeraar toen er schade was. Sindsdien vergeet ik het nooit meer — maar ik realiseerde me dat ik dat niet opgelost had met discipline, maar met puur geluk.
 >
-> Dus heb ik er iets voor gebouwd: **[APKwekker](https://apkwekker.nl/)**. Je typt je kenteken, vult je e-mail in, en je krijgt 60, 30 en 7 dagen vóór de vervaldatum een mailtje. Geen account, geen app, geen kosten.
+> Dus heb ik er iets voor gebouwd: **[APKwekker](https://apkwekker.com/)**. Je typt je kenteken, vult je e-mail in, en je krijgt 60, 30 en 7 dagen vóór de vervaldatum een mailtje. Geen account, geen app, geen kosten.
 >
 > Nee, geen schattige subscription-plans. Het is gratis en de site draait op affiliatievergoedingen (waarvan ik niet eens weet of die ooit iets opleveren — iets met verzekeringsvergelijkers). Data komt uit het openbare RDW-kentekenregister.
 >
@@ -29,19 +29,19 @@ Ready-to-paste. Toon, don't sell: we vragen feedback, we verkopen niks. Alle pos
 > Gratis APK-herinnering per e-mail gebouwd (NL) — wat zou jullie tegenhouden om dit te gebruiken?
 
 **Bericht:**
-> Kort verhaal: auto's verliezen hun APK-datum nooit uit het RDW-register, maar mensen verliezen wél het overzicht. [APKwekker](https://apkwekker.nl/) mailt je 60/30/7 dagen vóór de vervaldatum. Gratis, geen account, dubbele opt-in, afmelden met één klik.
+> Kort verhaal: auto's verliezen hun APK-datum nooit uit het RDW-register, maar mensen verliezen wél het overzicht. [APKwekker](https://apkwekker.com/) mailt je 60/30/7 dagen vóór de vervaldatum. Gratis, geen account, dubbele opt-in, afmelden met één klik.
 >
 > Ik zit vooral met één vraag: de concurrentie (kentekenchecksites) toont de datum netjes — en toch rijden er ruim 238.000 auto's rond met een verlopen APK. Het probleem is dus niet de informatie, maar het vergeten. Klopt die analyse? Wat zou er in de herinnering moeten staan om écht actie uit te lokken?
 
 ## Tweakers — forum (W&T → "Sites voor eigen werk"-regels respecteren)
 
 **Titel:**
-> [Site] APKwekker.nl — gratis APK-herinnering per e-mail (eigen werk, feedback gevraagd)
+> [Site] apkwekker.com — gratis APK-herinnering per e-mail (eigen werk, feedback gevraagd)
 
 **Bericht:**
 > Beste Tweakers,
 >
-> Na wat avonduren staat er eindelijk iets online dat ik zelf nodig had: **[APKwekker.nl](https://apkwekker.nl/)** — een gratis herinneringsservice voor je APK-vervaldatum.
+> Na wat avonduren staat er eindelijk iets online dat ik zelf nodig had: **[apkwekker.com](https://apkwekker.com/)** — een gratis herinneringsservice voor je APK-vervaldatum.
 >
 > **Werking:**
 > - Kenteken invoeren → vervaldatum, merk en bouwjaar direct uit de RDW Open Data
@@ -63,21 +63,21 @@ Ready-to-paste. Toon, don't sell: we vragen feedback, we verkopen niks. Alle pos
 
 *(Kort houden — groepen zijn geen blog. Eén variant, posten als reactie op "hoe laat ik APK keuren"-vragen én als eigen post.)*
 
-> Tip voor wie het ook altijd vergeet 😄: apkwekker.nl — je vult je kenteken + e-mail in en krijgt gratis een mailtje voordat je APK verloopt (60, 30 en 7 dagen van tevoren). Geen account nodig. Nee, ik ben geen garage — ik ben gewoon iemand die er ooit 190 euro aan boetes aan heeft moeten geloven... ook niet, maar je snapt de motivatie. 🚗⏰
+> Tip voor wie het ook altijd vergeet 😄: apkwekker.com — je vult je kenteken + e-mail in en krijgt gratis een mailtje voordat je APK verloopt (60, 30 en 7 dagen van tevoren). Geen account nodig. Nee, ik ben geen garage — ik ben gewoon iemand die er ooit 190 euro aan boetes aan heeft moeten geloven... ook niet, maar je snapt de motivatie. 🚗⏰
 
 *(Let op: check de groepsregels; veel groepen staan eigen promotie alleen op specifieke dagen toe.)*
 
 ## Marktplaats-community / forumreactie
 
-> Handig voor wie 't ook altijd vergeet: **APKwekker.nl** — gratis herinnering per e-mail voordat je APK verloopt (60/30/7 dagen). Alleen je kenteken en e-mailadres nodig, geen account. Data komt van de RDW. Ik heb 'm zelf gebouwd, dus feedback is ook welkom.
+> Handig voor wie 't ook altijd vergeet: **apkwekker.com** — gratis herinnering per e-mail voordat je APK verloopt (60/30/7 dagen). Alleen je kenteken en e-mailadres nodig, geen account. Data komt van de RDW. Ik heb 'm zelf gebouwd, dus feedback is ook welkom.
 
 ## WhatsApp-deeltekst
 
 **Kort (sturen naar familie/vrienden):**
-> Ken je dat, dat je nooit weet wanneer je APK verloopt? Zet 'm hier neer: apkwekker.nl — gratis mailtje voordat hij afloopt. Kenteken + e-mail en je bent klaar ⏰🚗
+> Ken je dat, dat je nooit weet wanneer je APK verloopt? Zet 'm hier neer: apkwekker.com — gratis mailtje voordat hij afloopt. Kenteken + e-mail en je bent klaar ⏰🚗
 
 **Droog (groepsapp):**
-> Voor de groep: https://apkwekker.nl — de wekker voor je APK. Gratis. Ja, ook voor jouw diesel.
+> Voor de groep: https://apkwekker.com — de wekker voor je APK. Gratis. Ja, ook voor jouw diesel.
 
 **Antwoord op "hoeveel boete APK verlopen?":**
-> €190 boete + mogelijke gedoe met je verzekering. Voortaan: apkwekker.nl — gratis herinnering per mail, 30 seconden werk. 😉
+> €190 boete + mogelijke gedoe met je verzekering. Voortaan: apkwekker.com — gratis herinnering per mail, 30 seconden werk. 😉

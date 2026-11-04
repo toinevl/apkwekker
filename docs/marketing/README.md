@@ -17,5 +17,5 @@ Alles Nederlands, ready-to-paste. Tone of voice: informeel 'je', kort, praktisch
 
 ## Voor publicatie: twee dingetjes
 
-1. **Domein.** Alle links in dit materiaal gebruiken `https://apkwekker.nl/`. Is het domein nog niet live? Doe dan één find-and-replace naar de Azure Static Web Apps-url (of wacht met posten tot het domein staat — voor SEO en Reddit-geloven is een eigen domein wel zo netjes).
+1. **Domein.** Alle links in dit materiaal gebruiken `https://apkwekker.com/`. Is het domein nog niet live? Doe dan één find-and-replace naar de Azure Static Web Apps-url (of wacht met posten tot het domein staat — voor SEO en Reddit-geloven is een eigen domein wel zo netjes).
 2. **Bronnen.** Elke blogartikel bevat onderin een bronnenblok en een factcheck-notitie (HTML-commentaar; niet zichtbaar na het plakken in een HTML-renderer). Datums en bedragen zijn gecontroleerd op **30 oktober 2026** — boetetarieven indexeren jaarlijks, dus bij publicatie in 2027 even opnieuw checken.
