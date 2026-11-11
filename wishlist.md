@@ -70,3 +70,4 @@ x 2026-11-04 (A) Canonieke host = **apkwekker.com** — migratie afgerond (zero-
 (C) Programmatic SEO: per-model landing pages ("APK check Volkswagen Golf") +marketing #066
 (D) Analytics: privacy-friendly (Plausible-style) counters +ops #067
 (D) Customer support email/sender identity aligned with custom domain +ops #068
+(B) Instant APK-date (free sample) + hero-diepte volgens designing-converting-websites-skill — na de kentekencheck direct de gevonden APK-vervaldatum op het scherm tonen ("Je volgende APK: DD-MM-YYYY") vóór de e-mail-vraag (nu: check leidt alleen naar de reminder-signup — geen instant resultaat vóór de ask); plus echte hero-diepte (achtergrondbehandeling — kleurblok/subtiel beeld, geen plat vlak), accentdiscipline (geel blijft semantisch op logo/kenteken) en `prefers-reduced-motion` bij nieuwe animaties. Bron: skill-audit 11-11-2026 op de live site +frontend +ux #089
