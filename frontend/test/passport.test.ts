@@ -50,8 +50,24 @@ describe("toPassportView", () => {
     expect(v.title).toBe("VOLKSWAGEN FOX");
     expect(v.badge.kind).toBe("binnenkort");
     expect(v.daysLine).toBe("nog 21 dagen");
+    expect(v.dateLine).toBe("Je volgende APK: 1 augustus 2026");
     expect(v.rows.find((r) => r.label === "Cataloguswaarde")?.value).toMatch(/11\.720/);
     expect(v.rows.find((r) => r.label === "Trekgewicht (geremd)")?.value).toBe("700 kg");
+  });
+
+  it("promotes the APK date out of the rows into the date line", () => {
+    const v = toPassportView(base);
+    expect(v.rows.find((r) => r.label === "APK geldig tot")).toBeUndefined();
+  });
+
+  it("phrases the date line for an expired APK", () => {
+    const v = toPassportView({ ...base, apkStatus: "verlopen", daysUntilApk: -5 });
+    expect(v.dateLine).toBe("Je APK is verlopen sinds 1 augustus 2026");
+  });
+
+  it("returns no date line without an expiry date", () => {
+    const v = toPassportView({ ...base, vervaldatum_apk: null });
+    expect(v.dateLine).toBeNull();
   });
 
   it("omits missing rows and falls back on title", () => {

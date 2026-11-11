@@ -16,6 +16,7 @@ export interface VehiclePassport {
 
 export interface PassportView {
   title: string;
+  dateLine: string | null;
   rows: { label: string; value: string }[];
   badge: { text: string; kind: "verlopen" | "binnenkort" | "geldig" | "onbekend" };
   daysLine: string | null;
@@ -51,11 +52,19 @@ export function daysLineFor(days: number | null): string | null {
   return `nog ${days} dagen`;
 }
 
+/** Prominent one-line APK-date result (free sample): the instant answer, before any ask. */
+export function dateLineFor(iso: string | null, status: VehiclePassport["apkStatus"]): string | null {
+  if (!iso) return null;
+  const formatted = formatDateNl(iso);
+  if (formatted === "onbekend") return null;
+  if (status === "verlopen") return `Je APK is verlopen sinds ${formatted}`;
+  return `Je volgende APK: ${formatted}`;
+}
+
 export function toPassportView(p: VehiclePassport): PassportView {
   const title = [p.merk, p.handelsbenaming].filter(Boolean).join(" ") || "Voertuig";
   const rows: { label: string; value: string }[] = [];
 
-  rows.push({ label: "APK geldig tot", value: formatDateNl(p.vervaldatum_apk) });
   if (p.bouwjaar) rows.push({ label: "Bouwjaar", value: String(p.bouwjaar) });
   if (p.brandstof) rows.push({ label: "Brandstof", value: p.brandstof });
   if (p.catalogusprijs) rows.push({ label: "Cataloguswaarde", value: euro.format(p.catalogusprijs) });
@@ -65,7 +74,7 @@ export function toPassportView(p: VehiclePassport): PassportView {
   if (p.maximum_massa_trekken_ongeremd)
     rows.push({ label: "Trekgewicht (ongeremd)", value: `${p.maximum_massa_trekken_ongeremd} kg` });
 
-  return { title, rows, badge: badgeFor(p.apkStatus), daysLine: daysLineFor(p.daysUntilApk) };
+  return { title, dateLine: dateLineFor(p.vervaldatum_apk, p.apkStatus), rows, badge: badgeFor(p.apkStatus), daysLine: daysLineFor(p.daysUntilApk) };
 }
 
 /** Map an API error response to a Dutch user message. */

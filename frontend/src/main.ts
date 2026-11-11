@@ -58,6 +58,13 @@ function renderPassport(passport: VehiclePassport): void {
 
   card.appendChild(header);
 
+  if (view.dateLine) {
+    const dateLine = document.createElement("p");
+    dateLine.className = "apk-date";
+    dateLine.textContent = view.dateLine;
+    card.appendChild(dateLine);
+  }
+
   if (view.daysLine) {
     const days = document.createElement("p");
     days.className = "days-line";

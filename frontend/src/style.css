@@ -22,7 +22,12 @@ body {
   margin: 0;
   font-family: var(--font-body);
   color: var(--ink);
-  background: var(--paper);
+  /* FRONT-MIDDLE-BACK: zachte statische achtergrondwassing (geel + navy) geeft de
+     pagina diepte in plaats van een plat vlak — geen animatie, AA-contrast behouden */
+  background:
+    radial-gradient(600px 300px at 12% -2%, rgba(245, 179, 1, 0.10), transparent 62%),
+    radial-gradient(720px 380px at 100% 6%, rgba(26, 26, 46, 0.06), transparent 65%),
+    var(--paper);
   line-height: 1.6;
 }
 
@@ -205,6 +210,15 @@ button.primary:focus-visible {
 .badge--binnenkort { background: var(--orange); }
 .badge--geldig { background: var(--green); }
 .badge--onbekend { background: var(--ink-soft); }
+
+.apk-date {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 4.5vw, 1.8rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0.9rem 0 0;
+}
 
 .days-line {
   font-weight: 600;
